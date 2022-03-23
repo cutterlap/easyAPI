@@ -1,0 +1,2736 @@
+openapi: 3.0.0
+paths:
+  /sysDepts:
+    get:
+      tags:
+        - SysDept
+      summary: 'Find list SysDept'
+      description: 'Returns list of SysDept'
+      operationId: getSysDept
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysDept' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysDept' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysDept' } }
+                type: object
+        '404':
+          description: 'SysDept not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysDept
+      summary: 'Add a new SysDept to the store'
+      operationId: addSysDept
+      requestBody:
+        $ref: '#/components/requestBodies/SysDept'
+      responses:
+        '201':
+          description: 'Created SysDept'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysDept'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysDept'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysDepts/{id}':
+    get:
+      tags:
+        - SysDept
+      summary: 'Find SysDept by ID'
+      description: 'Returns a single SysDept'
+      operationId: getSysDeptById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysDept to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysDept'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysDept'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysDept not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysDept
+      summary: 'Update an existing SysDept'
+      operationId: updateSysDept
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysDept id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysDept'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysDept not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysDept
+      summary: 'Deletes a SysDept'
+      operationId: deleteSysDept
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysDept id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysDictItems:
+    get:
+      tags:
+        - SysDictItem
+      summary: 'Find list SysDictItem'
+      description: 'Returns list of SysDictItem'
+      operationId: getSysDictItem
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysDictItem' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysDictItem' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysDictItem' } }
+                type: object
+        '404':
+          description: 'SysDictItem not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysDictItem
+      summary: 'Add a new SysDictItem to the store'
+      operationId: addSysDictItem
+      requestBody:
+        $ref: '#/components/requestBodies/SysDictItem'
+      responses:
+        '201':
+          description: 'Created SysDictItem'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysDictItem'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysDictItem'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysDictItems/{id}':
+    get:
+      tags:
+        - SysDictItem
+      summary: 'Find SysDictItem by ID'
+      description: 'Returns a single SysDictItem'
+      operationId: getSysDictItemById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysDictItem to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysDictItem'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysDictItem'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysDictItem not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysDictItem
+      summary: 'Update an existing SysDictItem'
+      operationId: updateSysDictItem
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysDictItem id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysDictItem'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysDictItem not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysDictItem
+      summary: 'Deletes a SysDictItem'
+      operationId: deleteSysDictItem
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysDictItem id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysDicts:
+    get:
+      tags:
+        - SysDict
+      summary: 'Find list SysDict'
+      description: 'Returns list of SysDict'
+      operationId: getSysDict
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysDict' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysDict' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysDict' } }
+                type: object
+        '404':
+          description: 'SysDict not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysDict
+      summary: 'Add a new SysDict to the store'
+      operationId: addSysDict
+      requestBody:
+        $ref: '#/components/requestBodies/SysDict'
+      responses:
+        '201':
+          description: 'Created SysDict'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysDict'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysDict'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysDicts/{id}':
+    get:
+      tags:
+        - SysDict
+      summary: 'Find SysDict by ID'
+      description: 'Returns a single SysDict'
+      operationId: getSysDictById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysDict to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysDict'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysDict'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysDict not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysDict
+      summary: 'Update an existing SysDict'
+      operationId: updateSysDict
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysDict id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysDict'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysDict not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysDict
+      summary: 'Deletes a SysDict'
+      operationId: deleteSysDict
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysDict id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysMenus:
+    get:
+      tags:
+        - SysMenu
+      summary: 'Find list SysMenu'
+      description: 'Returns list of SysMenu'
+      operationId: getSysMenu
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysMenu' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysMenu' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysMenu' } }
+                type: object
+        '404':
+          description: 'SysMenu not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysMenu
+      summary: 'Add a new SysMenu to the store'
+      operationId: addSysMenu
+      requestBody:
+        $ref: '#/components/requestBodies/SysMenu'
+      responses:
+        '201':
+          description: 'Created SysMenu'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysMenu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysMenu'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysMenus/{id}':
+    get:
+      tags:
+        - SysMenu
+      summary: 'Find SysMenu by ID'
+      description: 'Returns a single SysMenu'
+      operationId: getSysMenuById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysMenu to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysMenu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysMenu'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysMenu not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysMenu
+      summary: 'Update an existing SysMenu'
+      operationId: updateSysMenu
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysMenu id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysMenu'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysMenu not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysMenu
+      summary: 'Deletes a SysMenu'
+      operationId: deleteSysMenu
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysMenu id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysOauthClients:
+    get:
+      tags:
+        - SysOauthClient
+      summary: 'Find list SysOauthClient'
+      description: 'Returns list of SysOauthClient'
+      operationId: getSysOauthClient
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysOauthClient' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysOauthClient' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysOauthClient' } }
+                type: object
+        '404':
+          description: 'SysOauthClient not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysOauthClient
+      summary: 'Add a new SysOauthClient to the store'
+      operationId: addSysOauthClient
+      requestBody:
+        $ref: '#/components/requestBodies/SysOauthClient'
+      responses:
+        '201':
+          description: 'Created SysOauthClient'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysOauthClient'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysOauthClient'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysOauthClients/{id}':
+    get:
+      tags:
+        - SysOauthClient
+      summary: 'Find SysOauthClient by ID'
+      description: 'Returns a single SysOauthClient'
+      operationId: getSysOauthClientById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysOauthClient to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysOauthClient'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysOauthClient'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysOauthClient not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysOauthClient
+      summary: 'Update an existing SysOauthClient'
+      operationId: updateSysOauthClient
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysOauthClient id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysOauthClient'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysOauthClient not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysOauthClient
+      summary: 'Deletes a SysOauthClient'
+      operationId: deleteSysOauthClient
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysOauthClient id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysPermissions:
+    get:
+      tags:
+        - SysPermission
+      summary: 'Find list SysPermission'
+      description: 'Returns list of SysPermission'
+      operationId: getSysPermission
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysPermission' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysPermission' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysPermission' } }
+                type: object
+        '404':
+          description: 'SysPermission not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysPermission
+      summary: 'Add a new SysPermission to the store'
+      operationId: addSysPermission
+      requestBody:
+        $ref: '#/components/requestBodies/SysPermission'
+      responses:
+        '201':
+          description: 'Created SysPermission'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysPermission'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysPermission'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysPermissions/{id}':
+    get:
+      tags:
+        - SysPermission
+      summary: 'Find SysPermission by ID'
+      description: 'Returns a single SysPermission'
+      operationId: getSysPermissionById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysPermission to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysPermission'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysPermission'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysPermission not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysPermission
+      summary: 'Update an existing SysPermission'
+      operationId: updateSysPermission
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysPermission id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysPermission'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysPermission not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysPermission
+      summary: 'Deletes a SysPermission'
+      operationId: deleteSysPermission
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysPermission id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysRoleMenus:
+    get:
+      tags:
+        - SysRoleMenu
+      summary: 'Find list SysRoleMenu'
+      description: 'Returns list of SysRoleMenu'
+      operationId: getSysRoleMenu
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysRoleMenu' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysRoleMenu' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysRoleMenu' } }
+                type: object
+        '404':
+          description: 'SysRoleMenu not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysRoleMenu
+      summary: 'Add a new SysRoleMenu to the store'
+      operationId: addSysRoleMenu
+      requestBody:
+        $ref: '#/components/requestBodies/SysRoleMenu'
+      responses:
+        '201':
+          description: 'Created SysRoleMenu'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysRoleMenu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysRoleMenu'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysRoleMenus/{id}':
+    get:
+      tags:
+        - SysRoleMenu
+      summary: 'Find SysRoleMenu by ID'
+      description: 'Returns a single SysRoleMenu'
+      operationId: getSysRoleMenuById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysRoleMenu to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysRoleMenu'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysRoleMenu'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysRoleMenu not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysRoleMenu
+      summary: 'Update an existing SysRoleMenu'
+      operationId: updateSysRoleMenu
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysRoleMenu id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysRoleMenu'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysRoleMenu not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysRoleMenu
+      summary: 'Deletes a SysRoleMenu'
+      operationId: deleteSysRoleMenu
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysRoleMenu id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysRolePermissions:
+    get:
+      tags:
+        - SysRolePermission
+      summary: 'Find list SysRolePermission'
+      description: 'Returns list of SysRolePermission'
+      operationId: getSysRolePermission
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysRolePermission' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysRolePermission' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysRolePermission' } }
+                type: object
+        '404':
+          description: 'SysRolePermission not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysRolePermission
+      summary: 'Add a new SysRolePermission to the store'
+      operationId: addSysRolePermission
+      requestBody:
+        $ref: '#/components/requestBodies/SysRolePermission'
+      responses:
+        '201':
+          description: 'Created SysRolePermission'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysRolePermission'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysRolePermission'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysRolePermissions/{id}':
+    get:
+      tags:
+        - SysRolePermission
+      summary: 'Find SysRolePermission by ID'
+      description: 'Returns a single SysRolePermission'
+      operationId: getSysRolePermissionById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysRolePermission to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysRolePermission'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysRolePermission'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysRolePermission not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysRolePermission
+      summary: 'Update an existing SysRolePermission'
+      operationId: updateSysRolePermission
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysRolePermission id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysRolePermission'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysRolePermission not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysRolePermission
+      summary: 'Deletes a SysRolePermission'
+      operationId: deleteSysRolePermission
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysRolePermission id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysRoles:
+    get:
+      tags:
+        - SysRole
+      summary: 'Find list SysRole'
+      description: 'Returns list of SysRole'
+      operationId: getSysRole
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysRole' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysRole' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysRole' } }
+                type: object
+        '404':
+          description: 'SysRole not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysRole
+      summary: 'Add a new SysRole to the store'
+      operationId: addSysRole
+      requestBody:
+        $ref: '#/components/requestBodies/SysRole'
+      responses:
+        '201':
+          description: 'Created SysRole'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysRole'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysRole'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysRoles/{id}':
+    get:
+      tags:
+        - SysRole
+      summary: 'Find SysRole by ID'
+      description: 'Returns a single SysRole'
+      operationId: getSysRoleById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysRole to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysRole'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysRole'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysRole not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysRole
+      summary: 'Update an existing SysRole'
+      operationId: updateSysRole
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysRole id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysRole'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysRole not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysRole
+      summary: 'Deletes a SysRole'
+      operationId: deleteSysRole
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysRole id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysUserRoles:
+    get:
+      tags:
+        - SysUserRole
+      summary: 'Find list SysUserRole'
+      description: 'Returns list of SysUserRole'
+      operationId: getSysUserRole
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysUserRole' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysUserRole' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysUserRole' } }
+                type: object
+        '404':
+          description: 'SysUserRole not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysUserRole
+      summary: 'Add a new SysUserRole to the store'
+      operationId: addSysUserRole
+      requestBody:
+        $ref: '#/components/requestBodies/SysUserRole'
+      responses:
+        '201':
+          description: 'Created SysUserRole'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysUserRole'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysUserRole'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysUserRoles/{id}':
+    get:
+      tags:
+        - SysUserRole
+      summary: 'Find SysUserRole by ID'
+      description: 'Returns a single SysUserRole'
+      operationId: getSysUserRoleById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysUserRole to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysUserRole'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysUserRole'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysUserRole not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysUserRole
+      summary: 'Update an existing SysUserRole'
+      operationId: updateSysUserRole
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysUserRole id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysUserRole'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysUserRole not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysUserRole
+      summary: 'Deletes a SysUserRole'
+      operationId: deleteSysUserRole
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysUserRole id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /sysUsers:
+    get:
+      tags:
+        - SysUser
+      summary: 'Find list SysUser'
+      description: 'Returns list of SysUser'
+      operationId: getSysUser
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysUser' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/SysUser' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/SysUser' } }
+                type: object
+        '404':
+          description: 'SysUser not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - SysUser
+      summary: 'Add a new SysUser to the store'
+      operationId: addSysUser
+      requestBody:
+        $ref: '#/components/requestBodies/SysUser'
+      responses:
+        '201':
+          description: 'Created SysUser'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysUser'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysUser'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/sysUsers/{id}':
+    get:
+      tags:
+        - SysUser
+      summary: 'Find SysUser by ID'
+      description: 'Returns a single SysUser'
+      operationId: getSysUserById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of SysUser to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SysUser'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SysUser'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'SysUser not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - SysUser
+      summary: 'Update an existing SysUser'
+      operationId: updateSysUser
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysUser id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/SysUser'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'SysUser not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - SysUser
+      summary: 'Deletes a SysUser'
+      operationId: deleteSysUser
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'SysUser id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /users:
+    get:
+      tags:
+        - Users
+      summary: 'Find list Users'
+      description: 'Returns list of Users'
+      operationId: getUsers
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Users' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Users' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/Users' } }
+                type: object
+        '404':
+          description: 'Users not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - Users
+      summary: 'Add a new Users to the store'
+      operationId: addUsers
+      requestBody:
+        $ref: '#/components/requestBodies/Users'
+      responses:
+        '201':
+          description: 'Created Users'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/users/{id}':
+    get:
+      tags:
+        - Users
+      summary: 'Find Users by ID'
+      description: 'Returns a single Users'
+      operationId: getUsersById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of Users to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'Users not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - Users
+      summary: 'Update an existing Users'
+      operationId: updateUsers
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Users id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/Users'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Users not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - Users
+      summary: 'Deletes a Users'
+      operationId: deleteUsers
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Users id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+components:
+  schemas:
+    SysDept:
+      title: SysDept
+      description: SysDept
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+        name:
+          nullable: true
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 64
+        parent_id:
+          nullable: true
+          title: parent_id
+          description: parent_id
+          type: integer
+          format: '-'
+          maxLength: 20
+        tree_path:
+          nullable: true
+          title: tree_path
+          description: tree_path
+          type: string
+          format: '-'
+          maxLength: 255
+        sort:
+          nullable: true
+          title: sort
+          description: sort
+          type: integer
+          format: '-'
+          maxLength: 11
+        status:
+          nullable: true
+          title: status
+          description: status
+          type: integer
+          format: '-'
+          maxLength: 1
+        deleted:
+          nullable: true
+          title: deleted
+          description: deleted
+          type: integer
+          format: '-'
+          maxLength: 1
+        gmt_create:
+          nullable: true
+          title: gmt_create
+          description: gmt_create
+          type: string
+          format: date
+        gmt_modified:
+          nullable: true
+          title: gmt_modified
+          description: gmt_modified
+          type: string
+          format: date
+      type: object
+    SysDict:
+      title: SysDict
+      description: SysDict
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+        name:
+          nullable: true
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 50
+        code:
+          nullable: true
+          title: code
+          description: code
+          type: string
+          format: '-'
+          maxLength: 50
+        status:
+          nullable: true
+          title: status
+          description: status
+          type: integer
+          format: '-'
+          maxLength: 1
+        remark:
+          nullable: true
+          title: remark
+          description: remark
+          type: string
+          format: '-'
+          maxLength: 255
+        gmt_create:
+          nullable: true
+          title: gmt_create
+          description: gmt_create
+          type: string
+          format: date
+        gmt_modified:
+          nullable: true
+          title: gmt_modified
+          description: gmt_modified
+          type: string
+          format: date
+      type: object
+    SysDictItem:
+      title: SysDictItem
+      description: SysDictItem
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+        name:
+          nullable: true
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 50
+        value:
+          nullable: true
+          title: value
+          description: value
+          type: string
+          format: '-'
+          maxLength: 50
+        dict_code:
+          nullable: true
+          title: dict_code
+          description: dict_code
+          type: string
+          format: '-'
+          maxLength: 50
+        sort:
+          nullable: true
+          title: sort
+          description: sort
+          type: integer
+          format: '-'
+          maxLength: 11
+        status:
+          nullable: true
+          title: status
+          description: status
+          type: integer
+          format: '-'
+          maxLength: 1
+        defaulted:
+          nullable: true
+          title: defaulted
+          description: defaulted
+          type: integer
+          format: '-'
+          maxLength: 1
+        remark:
+          nullable: true
+          title: remark
+          description: remark
+          type: string
+          format: '-'
+          maxLength: 255
+        gmt_create:
+          nullable: true
+          title: gmt_create
+          description: gmt_create
+          type: string
+          format: date
+        gmt_modified:
+          nullable: true
+          title: gmt_modified
+          description: gmt_modified
+          type: string
+          format: date
+      type: object
+    SysMenu:
+      title: SysMenu
+      description: SysMenu
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+        name:
+          nullable: true
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 64
+        parent_id:
+          nullable: true
+          title: parent_id
+          description: parent_id
+          type: integer
+          format: '-'
+          maxLength: 20
+        path:
+          nullable: true
+          title: path
+          description: path
+          type: string
+          format: '-'
+          maxLength: 128
+        component:
+          nullable: true
+          title: component
+          description: component
+          type: string
+          format: '-'
+          maxLength: 128
+        icon:
+          nullable: true
+          title: icon
+          description: icon
+          type: string
+          format: '-'
+          maxLength: 64
+        sort:
+          nullable: true
+          title: sort
+          description: sort
+          type: integer
+          format: '-'
+          maxLength: 11
+        visible:
+          nullable: true
+          title: visible
+          description: visible
+          type: integer
+          format: '-'
+          maxLength: 1
+        redirect:
+          nullable: true
+          title: redirect
+          description: redirect
+          type: string
+          format: '-'
+          maxLength: 128
+        gmt_create:
+          nullable: true
+          title: gmt_create
+          description: gmt_create
+          type: string
+          format: date
+        gmt_modified:
+          nullable: true
+          title: gmt_modified
+          description: gmt_modified
+          type: string
+          format: date
+      type: object
+    SysOauthClient:
+      title: SysOauthClient
+      description: SysOauthClient
+      properties:
+        client_id:
+          nullable: false
+          title: client_id
+          description: client_id
+          type: string
+          format: '-'
+          maxLength: 256
+        resource_ids:
+          nullable: true
+          title: resource_ids
+          description: resource_ids
+          type: string
+          format: '-'
+          maxLength: 256
+        client_secret:
+          nullable: true
+          title: client_secret
+          description: client_secret
+          type: string
+          format: '-'
+          maxLength: 256
+        scope:
+          nullable: true
+          title: scope
+          description: scope
+          type: string
+          format: '-'
+          maxLength: 256
+        authorized_grant_types:
+          nullable: true
+          title: authorized_grant_types
+          description: authorized_grant_types
+          type: string
+          format: '-'
+          maxLength: 256
+        web_server_redirect_uri:
+          nullable: true
+          title: web_server_redirect_uri
+          description: web_server_redirect_uri
+          type: string
+          format: '-'
+          maxLength: 256
+        authorities:
+          nullable: true
+          title: authorities
+          description: authorities
+          type: string
+          format: '-'
+          maxLength: 256
+        access_token_validity:
+          nullable: true
+          title: access_token_validity
+          description: access_token_validity
+          type: integer
+          format: '-'
+          maxLength: 11
+        refresh_token_validity:
+          nullable: true
+          title: refresh_token_validity
+          description: refresh_token_validity
+          type: integer
+          format: '-'
+          maxLength: 11
+        additional_information:
+          nullable: true
+          title: additional_information
+          description: additional_information
+          type: string
+          format: '-'
+          maxLength: 4096
+        autoapprove:
+          nullable: true
+          title: autoapprove
+          description: autoapprove
+          type: string
+          format: '-'
+          maxLength: 256
+      type: object
+    SysPermission:
+      title: SysPermission
+      description: SysPermission
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+        name:
+          nullable: true
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 64
+        menu_id:
+          nullable: true
+          title: menu_id
+          description: menu_id
+          type: integer
+          format: '-'
+          maxLength: 11
+        url_perm:
+          nullable: true
+          title: url_perm
+          description: url_perm
+          type: string
+          format: '-'
+          maxLength: 128
+        btn_perm:
+          nullable: true
+          title: btn_perm
+          description: btn_perm
+          type: string
+          format: '-'
+          maxLength: 64
+        gmt_create:
+          nullable: true
+          title: gmt_create
+          description: gmt_create
+          type: string
+          format: date
+        gmt_modified:
+          nullable: true
+          title: gmt_modified
+          description: gmt_modified
+          type: string
+          format: date
+      type: object
+    SysRole:
+      title: SysRole
+      description: SysRole
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+        name:
+          nullable: false
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 64
+        code:
+          nullable: true
+          title: code
+          description: code
+          type: string
+          format: '-'
+          maxLength: 32
+        sort:
+          nullable: true
+          title: sort
+          description: sort
+          type: integer
+          format: '-'
+          maxLength: 11
+        status:
+          nullable: true
+          title: status
+          description: status
+          type: integer
+          format: '-'
+          maxLength: 1
+        deleted:
+          nullable: false
+          title: deleted
+          description: deleted
+          type: integer
+          format: '-'
+          maxLength: 1
+        gmt_create:
+          nullable: true
+          title: gmt_create
+          description: gmt_create
+          type: string
+          format: date
+        gmt_modified:
+          nullable: true
+          title: gmt_modified
+          description: gmt_modified
+          type: string
+          format: date
+      type: object
+    SysRoleMenu:
+      title: SysRoleMenu
+      description: SysRoleMenu
+      properties:
+        role_id:
+          nullable: false
+          title: role_id
+          description: role_id
+          type: integer
+          format: '-'
+          maxLength: 20
+        menu_id:
+          nullable: false
+          title: menu_id
+          description: menu_id
+          type: integer
+          format: '-'
+          maxLength: 20
+      type: object
+    SysRolePermission:
+      title: SysRolePermission
+      description: SysRolePermission
+      properties:
+        role_id:
+          nullable: true
+          title: role_id
+          description: role_id
+          type: integer
+          format: '-'
+          maxLength: 11
+        permission_id:
+          nullable: true
+          title: permission_id
+          description: permission_id
+          type: integer
+          format: '-'
+          maxLength: 11
+      type: object
+    SysUser:
+      title: SysUser
+      description: SysUser
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 11
+        username:
+          nullable: true
+          title: username
+          description: username
+          type: string
+          format: '-'
+          maxLength: 64
+        nickname:
+          nullable: true
+          title: nickname
+          description: nickname
+          type: string
+          format: '-'
+          maxLength: 64
+        gender:
+          nullable: true
+          title: gender
+          description: gender
+          type: integer
+          format: '-'
+          maxLength: 1
+        password:
+          nullable: true
+          title: password
+          description: password
+          type: string
+          format: '-'
+          maxLength: 100
+        dept_id:
+          nullable: true
+          title: dept_id
+          description: dept_id
+          type: integer
+          format: '-'
+          maxLength: 11
+        avatar:
+          nullable: true
+          title: avatar
+          description: avatar
+          type: string
+          format: '-'
+          maxLength: 255
+        mobile:
+          nullable: true
+          title: mobile
+          description: mobile
+          type: string
+          format: '-'
+          maxLength: 20
+        status:
+          nullable: true
+          title: status
+          description: status
+          type: integer
+          format: '-'
+          maxLength: 1
+        email:
+          nullable: true
+          title: email
+          description: email
+          type: string
+          format: '-'
+          maxLength: 128
+        deleted:
+          nullable: true
+          title: deleted
+          description: deleted
+          type: integer
+          format: '-'
+          maxLength: 1
+        gmt_create:
+          nullable: true
+          title: gmt_create
+          description: gmt_create
+          type: string
+          format: date
+        gmt_modified:
+          nullable: true
+          title: gmt_modified
+          description: gmt_modified
+          type: string
+          format: date
+      type: object
+    SysUserRole:
+      title: SysUserRole
+      description: SysUserRole
+      properties:
+        user_id:
+          nullable: false
+          title: user_id
+          description: user_id
+          type: integer
+          format: '-'
+          maxLength: 11
+        role_id:
+          nullable: false
+          title: role_id
+          description: role_id
+          type: integer
+          format: '-'
+          maxLength: 11
+      type: object
+    Users:
+      title: Users
+      description: Users
+      properties:
+        id:
+          nullable: false
+          title: id
+          description: id
+          type: integer
+          format: '-'
+        email:
+          nullable: false
+          title: email
+          description: email
+          type: string
+          format: '-'
+          maxLength: 255
+        username:
+          nullable: true
+          title: username
+          description: username
+          type: string
+          format: '-'
+          maxLength: 30
+        password:
+          nullable: false
+          title: password
+          description: password
+          type: string
+          format: '-'
+          maxLength: 255
+        email_verified_at:
+          nullable: true
+          title: email_verified_at
+          description: email_verified_at
+          type: string
+          format: date
+        remember_token:
+          nullable: true
+          title: remember_token
+          description: remember_token
+          type: string
+          format: '-'
+          maxLength: 255
+        created_at:
+          nullable: true
+          title: created_at
+          description: created_at
+          type: string
+          format: date
+        updated_at:
+          nullable: true
+          title: updated_at
+          description: updated_at
+          type: string
+          format: date
+        deleted_at:
+          nullable: true
+          title: deleted_at
+          description: deleted_at
+          type: string
+          format: date
+      type: object
+  requestBodies:
+    SysDept:
+      description: 'SysDept object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysDept'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysDept'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysDept'
+    SysDict:
+      description: 'SysDict object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysDict'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysDict'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysDict'
+    SysDictItem:
+      description: 'SysDictItem object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysDictItem'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysDictItem'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysDictItem'
+    SysMenu:
+      description: 'SysMenu object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysMenu'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysMenu'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysMenu'
+    SysOauthClient:
+      description: 'SysOauthClient object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysOauthClient'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysOauthClient'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysOauthClient'
+    SysPermission:
+      description: 'SysPermission object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysPermission'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysPermission'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysPermission'
+    SysRole:
+      description: 'SysRole object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysRole'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysRole'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysRole'
+    SysRoleMenu:
+      description: 'SysRoleMenu object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysRoleMenu'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysRoleMenu'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysRoleMenu'
+    SysRolePermission:
+      description: 'SysRolePermission object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysRolePermission'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysRolePermission'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysRolePermission'
+    SysUser:
+      description: 'SysUser object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysUser'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysUser'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysUser'
+    SysUserRole:
+      description: 'SysUserRole object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/SysUserRole'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/SysUserRole'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SysUserRole'
+    Users:
+      description: 'Users object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/Users'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Users'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Users'
+tags:
+  -
+    name: SysDept
+    description: 'Everything about your SysDept'
+  -
+    name: SysDict
+    description: 'Everything about your SysDict'
+  -
+    name: SysDictItem
+    description: 'Everything about your SysDictItem'
+  -
+    name: SysMenu
+    description: 'Everything about your SysMenu'
+  -
+    name: SysOauthClient
+    description: 'Everything about your SysOauthClient'
+  -
+    name: SysPermission
+    description: 'Everything about your SysPermission'
+  -
+    name: SysRole
+    description: 'Everything about your SysRole'
+  -
+    name: SysRoleMenu
+    description: 'Everything about your SysRoleMenu'
+  -
+    name: SysRolePermission
+    description: 'Everything about your SysRolePermission'
+  -
+    name: SysUser
+    description: 'Everything about your SysUser'
+  -
+    name: SysUserRole
+    description: 'Everything about your SysUserRole'
+  -
+    name: Users
+    description: 'Everything about your Users'

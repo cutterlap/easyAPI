@@ -34,6 +34,18 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->resource('users');
 
+
+$routes->resource('sysDepts');
+$routes->resource('sysDicts');
+$routes->resource('sysDictItems');
+$routes->resource('sysMenus');
+$routes->resource('sysOauthClients');
+$routes->resource('sysPermissions');
+$routes->resource('sysRoles');
+$routes->resource('sysRoleMenus');
+$routes->resource('sysRolePermissions');
+$routes->resource('sysUsers');
+$routes->resource('sysUserRoles');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

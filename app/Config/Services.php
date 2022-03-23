@@ -19,6 +19,55 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
+    // 白名单里的uri不认证
+    public const jwt_white_list = [
+    '/sys/user/login/post',
+    '/sys/user/logout/post',
+    '/sys/user/refreshtoken/post', // 刷新token接口需要在控制器内作权限验证,比较特殊
+    '/sys/user/githubauth/get', // github认证免授权
+    '/sys/user/giteeauth/get', // gitee码云认证免授权
+    '/sys/user/corpauth/get', // wecom认证免授权
+    '/sys/user/wecombinding/put', //綁定wecom_id
+    // 下面接口uri 可以在菜单权限里面添加,再分配给对应角色即可, 方便/安全?
+    // 如果不想在前端菜单里添加,也可以直接在后端在控制器里单独做token验证,不用做权限认证
+    // 参考/sys/user/refreshtoken
+    '/sys/user/info/get',
+    '/sys/user/list/get',
+    '/sys/user/getroleoptions/get',
+    '/sys/user/getdeptoptions/get',
+    '/sys/user/password/put',
+    '/sys/role/allroles/get',
+    '/sys/role/allmenus/get',
+    '/sys/role/alldepts/get',
+    '/sys/role/rolemenu/post',
+    '/sys/role/rolerole/post',
+    '/sys/role/roledept/post',
+    '/sys/menu/treeoptions/get',
+
+    // 以下均为测试接口
+    'rest_server/get', // http://cirest.com:8890/rest_server 接口不认证 uri_string => rest_server
+    'welcome/get', // http://cirest.com:8890/welcome 接口不认证
+    '/example/users/get',
+    '/example/users/post',
+    '/example/users/delete',
+    '/testapi/get',
+
+    '/article/articles/get', // 测试api接口不认证 http://www.cirest.com:8890/api/v2/article/articles     uri_string => api/v2/article/articles
+    '/article/articles/post',
+    '/article/articles/put',
+    '/article/articles/delete',
+    '/article/upload/post',
+    '/article/arraydiff/post',
+    '/article/monolog/post',
+    '/article/validation/post',
+    '/article/phpmailer/post',
+    '/article/activiti/post',
+
+    '/uploadimg/goods/get',
+    '/uploadimg/upload/post',
+  //  '/sys/user/testapi/get', // 测试api接口不认证 http://cirest.com:8890/api/v2/sys/user/testapi         uri_string => api/v2/sys/user/testapi
+    '/sys/log/dbrestore/post',
+];
     /*
      * public static function example($getShared = true)
      * {
@@ -29,4 +78,7 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+    public static function getSecretKey(){
+        return getenv('JWT_SECRET_KEY');
+    } 
 }
