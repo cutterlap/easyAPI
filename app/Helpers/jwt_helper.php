@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\UserModel;
+use App\Models\SysUserModel;
 use Config\Services;
 use Firebase\JWT\JWT;
 
@@ -17,19 +17,20 @@ function validateJWTFromRequest(string $encodedToken)
 {
     $key = Services::getSecretKey();
     $decodedToken = JWT::decode($encodedToken, $key, ['HS256']);
-    $userModel = new UserModel();
-    $userModel->findUserByEmailAddress($decodedToken->email);
+    $userModel = model('SysUserModel');
+    $userModel->findUserByUserId($decodedToken->user_id);
 }
 
-function getSignedJWTForUser(string $email)
+function getSignedJWTForUser(int $user_id, string $scopes)
 {
     $issuedAtTime = time();
-    $tokenTimeToLive = getenv('JWT_TIME_TO_LIVE');
-    $tokenExpiration = $issuedAtTime + $tokenTimeToLive;
+    if ($scopes == 'refresh_token') $tokenExpiration = $issuedAtTime + getenv('REFRESH_JWT_TIME_TO_LIVE');
+    else $tokenExpiration = $issuedAtTime + getenv('JWT_TIME_TO_LIVE');
     $payload = [
-        'email' => $email,
+        'user_id' => $user_id,
         'iat' => $issuedAtTime,
         'exp' => $tokenExpiration,
+        'scopes' => $scopes,
     ];
 
     $jwt = JWT::encode($payload, Services::getSecretKey());

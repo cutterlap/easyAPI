@@ -11,7 +11,7 @@ use Nette\Utils\Arrays;
 use Nette\Utils\Strings;
 use Exception;
 
-class JWTAuthenticationFilter implements FilterInterface
+class JWTAuth implements FilterInterface
 {
     use ResponseTrait;
     private $http_method;
@@ -20,54 +20,47 @@ class JWTAuthenticationFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $authenticationHeader = $request->getServer('HTTP_AUTHORIZATION');
-        $this->http_method = $request->getServer('REQUEST_METHOD');
+        $this->http_method = Strings::lower($request->getServer('REQUEST_METHOD'));
         $this->uri_string = uri_string();
         //白名單中的路由不做JWT認證
         $in_whiteList = $this->uri_string == '' ? true : Arrays::some(Services::jwt_white_list, function ($value): bool {
             // 白名单里的某一项 eg. '/sys/user/testapi' 包含于 uri_string() => 'api/v2/sys/user/testapi' 中则立即返回true, 所有项都不包含于才返回false
             $res = explode("/", $value);
             $http_method_wl = array_pop($res); // 获取最后一个元素，并且原数组删除最后一个
-            $uri_wl = implode("/", $res);   
-
-            // var_dump($http_method_wl);
-            var_dump($uri_wl);
-            var_dump($this->uri_string);
-            // var_dump(Strings::contains(uri_string(), $uri_wl));
-            // var_dump($this->http_method === $http_method_wl);
-            // var_dump(Strings::contains(uri_string(), $uri_wl) && $this->http_method === $http_method_wl);
-
-
+            $uri_wl = implode("/", $res);
+            //var_dump($uri_wl);
+            //var_dump($this->uri_string);
             return Strings::contains($this->uri_string, $uri_wl) && $this->http_method === $http_method_wl;
         });
 
-        /*
-        try {
+        if (!$in_whiteList) { // 不在白名单里需要校验 token expired etc..
 
-            helper('jwt');
-            $encodedToken = getJWTFromRequest($authenticationHeader);
-            validateJWTFromRequest($encodedToken);
-            return $request;
+            try {
+                helper('jwt');
+                $encodedToken = getJWTFromRequest($authenticationHeader);
+                validateJWTFromRequest($encodedToken);
+                return $request;
+            } catch (Exception $e) {
 
-        } catch (Exception $e) {
-
-            return Services::response()
-                ->setJSON(
-                    [
-                        'error' => $e->getMessage()
-                    ]
-                )
-                ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
-
+                return Services::response()
+                    ->setJSON(
+                        [
+                            'error' => $e->getMessage()
+                        ]
+                    )
+                    ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
+            }
         }
-        */
     }
 
-    public function after(RequestInterface $request,
-                          ResponseInterface $response,
-                          $arguments = null)
-    {
+    public function after(
+        RequestInterface $request,
+        ResponseInterface $response,
+        $arguments = null
+    ) {
     }
 
+    /*
      //token及权限认证
      public function auth()
      {
@@ -111,4 +104,5 @@ class JWTAuthenticationFilter implements FilterInterface
              }
          }
      } // auth() end
+     */
 }

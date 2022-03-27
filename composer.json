@@ -6,17 +6,26 @@
 	"license": "MIT",
 	"minimum-stability": "dev",
 	"require": {
-		"php": ">=7.2",
-		"codeigniter4/framework": "^4",
+		"php": "^7.4||^8.0",
+		"ext-json": "*",
+		"codeigniter4/framework": "^4",			
+		"lonnieezell/codigniter-shield": "dev-develop",
+		"roave/security-advisories": "dev-latest",
+		"spatie/commonmark-highlighter": "^3.0",		
+		"asligresik/easyapi": "^0.0.8",
 		"zircote/swagger-php": "^3.0",
-		"firebase/php-jwt": "^5.2",
-		"asligresik/easyapi": "^0.0",
+		"firebase/php-jwt": "^5.2",		
 		"nette/utils": "v3.2.x-dev"
 	},
 	"require-dev": {
-		"fzaninotto/faker": "^1.9@dev",
-		"mikey179/vfsstream": "1.6.*",
-		"phpunit/phpunit": "^8.5"
+		"codeigniter/coding-standard": "^1.1",
+		"fakerphp/faker": "^1.9",
+		"mikey179/vfsstream": "^1.6",
+		"nexusphp/cs-config": "^3.1",
+		"nexusphp/tachycardia": "^1.0",
+		"phpstan/phpstan": "^1.1",
+		"phpunit/phpunit": "^9.1",
+		"psr/container": "^1.0"	
 	},
 	"autoload-dev": {
 		"psr-4": {
@@ -27,6 +36,7 @@
 		"post-update-cmd": [
 			"@composer dump-autoload"
 		],
+		"swagger-doc":"openapi -o public/assets/api.yaml ./app",
 		"test": "phpunit"
 	},
 	"support": {
